@@ -1,4 +1,7 @@
 
+//LAU Kwan Kit
+//301256503
+//January 2023
 var form = document.getElementById("form");
 document.getElementById("submit").addEventListener ("click", checkInput);
 
