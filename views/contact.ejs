@@ -1,41 +1,48 @@
 <%- include partials/header.ejs %>
 
 <%- include partials/main_nav.ejs %>
-  
 
   <!-- Main Content -->
   <main class="container">
-    <div class="contact">
-      <form action="/home">
-        <!-- https://www.100forms.com/sources/ready-forms/contact-us-form/ -->
-        <table style="width:100%;max-width:550px;border:0;" cellpadding="8" cellspacing="0">
-        <tr> <td>
-        <label for="Name">Name*:</label>
-        </td> <td>
-        <input name="Name" type="text" maxlength="60" style="width:100%;max-width:250px;" />
-        </td> </tr> <tr> <td>
-        <label for="PhoneNumber">Phone number:</label>
-        </td> <td>
-        <input name="PhoneNumber" type="text" maxlength="43" style="width:100%;max-width:250px;" />
-        </td> </tr> <tr> <td>
-        <label for="FromEmailAddress">Email address*:</label>
-        </td> <td>
-        <input name="FromEmailAddress" type="text" maxlength="90" style="width:100%;max-width:250px;" />
-        </td> </tr> <tr> <td>
-        <label for="Comments">Comments*:</label>
-        </td> <td>
-        <textarea name="Comments" rows="7" cols="40" style="width:100%;max-width:350px;"></textarea>
-        </td> </tr> <tr> <td>
-        * - required fields
-        </td> <td>
-        <div style="float:right"></div>
-        <input name="skip_Submit" type="submit" value="Submit" />
-        </td> </tr>
-        </table>
-        </form>
+    <div class="jumbotron">
+      <div class="contact">
+        <br />
+
+        <form id="form">
+          <h2>Contact form</h2>
+          <!-- https://www.100forms.com/sources/ready-forms/contact-us-form/ -->
+          <table style="width:100%;max-width:550px;border:0;" cellpadding="8" cellspacing="0">
+          <tr> <td>
+          <label for="Name">Name*:</label>
+          </td> <td>
+          <input name="Name" type="text" maxlength="60" style="width:100%;max-width:250px;" />
+          </td> </tr> <tr> <td>
+          <label for="PhoneNumber">Phone number:</label>
+          </td> <td>
+          <input name="PhoneNumber" type="text" maxlength="43" style="width:100%;max-width:250px;" />
+          </td> </tr> <tr> <td>
+          <label for="FromEmailAddress">Email address*:</label>
+          </td> <td>
+          <input name="FromEmailAddress" type="text" maxlength="90" style="width:100%;max-width:250px;" />
+          </td> </tr> <tr> <td>
+          <label for="Comments">Comments*:</label>
+          </td> <td>
+          <textarea name="Comments" rows="7" cols="40" style="width:100%;max-width:350px;"></textarea>
+          </td> </tr> <tr> <td>
+          * - required fields
+          </td> <td>
+          <div style="float:right"></div>
+          <button id="submit">Submit</button>
+          <!-- button name="Check input" id="check" value="Check input" onClick="checkInput(e)">Check Inputs</button -->
+
+          </td> </tr>
+          </table>
+          </form>
+      </div>
     </div>
   </main>
-  
+<script src="/Scripts/buttonOnClick.js"></script>
+
 <%- include partials/bottom_nav.ejs %>  
 
 <%- include partials/footer.ejs %>
