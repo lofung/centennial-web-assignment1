@@ -36,9 +36,5 @@ router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact'});
 });
 
-/* Return public assets */
-router.get('/contact', function(req, res, next) {
-  res.render('index', { title: 'Contact'});
-});
 
 module.exports = router;

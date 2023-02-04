@@ -7,7 +7,7 @@
     "nodemon": "nodemon server.js",
     "start2_obsolete": "node index.js",
     "push": "git add . && git commit -m",
-    "git": "git push -u origin main && git push heroku main"
+    "push all": "git push -u origin main && git push heroku main"
   },
   "engines": {
     "node": "^12.18.3",
