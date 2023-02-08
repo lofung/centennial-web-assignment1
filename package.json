@@ -8,6 +8,7 @@
     "start2_obsolete": "node index.js",
     "push": "git add . && git commit -m",
     "pushall": "git push -u origin main && git push heroku main"
+    
   },
   "engines": {
     "node": "^12.18.3",
