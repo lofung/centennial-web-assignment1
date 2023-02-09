@@ -11,10 +11,70 @@
 
   <!-- Main Content -->
   <main class="container">
-      <h1 class="display-4">Welcome to the <%= title %> page</h1>
-      
+    <h1 class="display-4"><%= title %> page</h1>
+      <br />
+      <table id="contactTable">
+        <tr>
+            <td style="min-width:200px">
+                Contact Name
+            </td>
+            <td style="min-width:200px">
+                Contact Number
+            </td>
+            <td style="min-width:200px">
+                Email Address
+            </td>
+        </tr>
+        <tr>
+            <td>
+                loading....
+            </td>
+        </tr>
+      </table>
     </div>
   </main>
+  <script>
+    async function fetchAllContacts(){
+        try {
+            let res = await fetch('/allbusinesscontacts')
+            let answer = await res.json()
+            let htmlAttachment = `<tr>
+                    <td style="min-width:200px">
+                        Contact Name
+                    </td>
+                    <td style="min-width:200px">
+                        Contact Number
+                    </td>
+                    <td style="min-width:200px">
+                        Email Address
+                    </td>
+                </tr>`
+            console.log(answer)
+            answer.forEach(item => {
+                let htmlSegment = `
+                <tr>
+                    <td>
+                        ${item.name}
+                    </td>
+                    <td>
+                        ${item.number}
+                    </td>
+                    <td>
+                        ${item.email}
+                    </td>
+                </tr>
+                `
+                htmlAttachment = htmlAttachment + htmlSegment
+            })
+            document.getElementById("contactTable").innerHTML = htmlAttachment
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
+    fetchAllContacts()
+  </script>
   
 <%- include partials/bottom_nav.ejs %>  
 

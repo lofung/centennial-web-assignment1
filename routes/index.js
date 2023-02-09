@@ -1,7 +1,7 @@
 //LAU Kwan Kit
 //301256503
 //January 2023//
-//
+const contactsModel = require('../models/contacts.js');
 
 var express = require('express');
 var router = express.Router();
@@ -47,6 +47,13 @@ router.get('/services', function(req, res, next) {
 /* GET Contact Us page. */
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact'});
+});
+
+/* secured API for all contacts */
+router.get('/allbusinesscontacts', checkAuthenticated, async function(req, res, next) {
+  const tempAllContacts = await contactsModel.find({})
+  const allContacts = JSON.parse(JSON.stringify(tempAllContacts))
+  res.json(allContacts)
 });
 
 function checkAuthenticated(req, res, next) {

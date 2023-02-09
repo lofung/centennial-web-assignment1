@@ -4,13 +4,13 @@ const userModel = require('./models/user.js');
 
 function initialize(passport) {
   const authenticateUser = async (userNameTypedIn, password, done) => {
-    console.log(userNameTypedIn)
-    console.log(password)
+    //console.log(userNameTypedIn)
+    //console.log(password)
     const userFromMongo = await userModel.findOne({name: userNameTypedIn})
     //Try using JSON.parse() and JSON.stringify() to remove mongoose object property:
     //https://stackoverflow.com/questions/33054622/find-user-in-mongo-with-mongoose-and-return-the-result-to-a-json
     const user = JSON.parse(JSON.stringify(userFromMongo))
-    console.log(user)
+    ///console.log(user)
     if (user == null) {
       return done(null, false, { message: 'No user with that user name' })
     }
