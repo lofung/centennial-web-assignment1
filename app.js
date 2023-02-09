@@ -17,7 +17,7 @@ let usersRouter = require('./routes/users');
 
 let app = express();
 
-mongoose.connect("mongodb+srv://test:test@cluster0.dab0i.mongodb.net/?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://test:test@cluster0.dab0i.mongodb.net/centennial_assignment1?retryWrites=true&w=majority", {
   useNewUrlParser: true, 
   useUnifiedTopology: true
 }, (err) => {
