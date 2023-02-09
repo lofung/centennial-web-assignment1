@@ -28,6 +28,8 @@
 
         <% if (messages.error) { %>
             <%= messages.error %>
+        <% } else if (locals.messages.error) {%>
+          <%= locals.messages.error %>
         <% } %>
       
     </div>

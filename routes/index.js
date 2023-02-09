@@ -11,11 +11,11 @@ router.get('/', function(req, res, next) {
   res.render('homepage', { title: 'Homepage'});
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', checkNotAuthenticated, function(req, res, next) {
   res.render('login', { title: 'Login'});
 });
 
-router.get('/register', function(req, res, next) {
+router.get('/register', checkNotAuthenticated, function(req, res, next) {
   res.render('register', { title: 'Register'});
 });
 
@@ -45,5 +45,19 @@ router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact'});
 });
 
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.locals.message = req.message
+  res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect('/')
+  }
+  return next()
+}
 
 module.exports = router;

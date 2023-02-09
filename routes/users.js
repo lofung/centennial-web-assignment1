@@ -46,5 +46,17 @@ router.post('/v1/login', passport.authenticate('local', {
   failureFlash: true
   }))
 
+router.delete('/v1/logout', (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/login');
+  });
+});
+  
+  
+
+
 module.exports = router;
 /* */
