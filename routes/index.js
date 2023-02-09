@@ -11,6 +11,15 @@ router.get('/', function(req, res, next) {
   res.render('homepage', { title: 'Homepage'});
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login'});
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('register', { title: 'Register'});
+});
+
+
 /* GET home page. */
 router.get('/home', function(req, res, next) {
   res.render('homepage', { title: 'Homepage'});

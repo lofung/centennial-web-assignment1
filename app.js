@@ -9,11 +9,24 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose')
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 
 let app = express();
+
+mongoose.connect("mongodb+srv://test:test@cluster0.dab0i.mongodb.net/?retryWrites=true&w=majority", {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+}, (err) => {
+  if(err){
+    console.error(err)
+  } else {
+    console.log("----mongoDB successfully connected.----")
+  }
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

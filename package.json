@@ -5,10 +5,10 @@
   "scripts": {
     "start": "node server.js",
     "nodemon": "nodemon server.js",
+    "devStart": "nodemon server.js",
     "start2_obsolete": "node index.js",
     "push": "git add . && git commit -m",
     "pushall": "git push -u origin main && git push heroku main"
-    
   },
   "engines": {
     "node": "^12.18.3",
@@ -16,19 +16,21 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
+    "bcrypt": "^5.1.0",
     "bootstrap": "^4.5.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jquery": "^3.5.1",
+    "mongoose": "^6.9.1",
     "morgan": "~1.9.1",
     "popper.js": "^1.16.1"
   },
   "description": "app for COMP229 Week 3",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsiliopoulos/COMP229-F2020-Week3.git"
