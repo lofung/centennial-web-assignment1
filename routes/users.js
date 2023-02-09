@@ -41,7 +41,7 @@ router.post('/v1/register', async function(req, res, next) {
 });
 
 router.post('/v1/login', passport.authenticate('local', {
-  successRedirect:'/', 
+  successRedirect:'/business', 
   failureRedirect:'/login', 
   failureFlash: true
   }))

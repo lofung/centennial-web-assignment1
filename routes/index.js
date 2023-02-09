@@ -35,6 +35,10 @@ router.get('/projects', function(req, res, next) {
   res.render('projects', { title: 'Projects'});
 });
 
+router.get('/business', checkAuthenticated, function(req, res, next) {
+  res.render('businessViews', { title: 'Business Contacts'});
+});
+
 /* GET Services page. */
 router.get('/services', function(req, res, next) {
   res.render('services', { title: 'Services'});
