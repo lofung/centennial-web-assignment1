@@ -11,6 +11,10 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose')
+const flash = require('express-flash')
+const session = require('express-session')
+const passport = require('passport')
+
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
@@ -36,6 +40,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// passport related
+
+app.use(flash())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 

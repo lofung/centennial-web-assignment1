@@ -13,6 +13,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    }, {
+        collection: 'user'
 });
 
 const User = mongoose.model("User", UserSchema);

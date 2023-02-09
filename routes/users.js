@@ -2,16 +2,22 @@
 //301256503
 //January 2023
 //
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+
 const bcrypt = require('bcrypt');
 const userModel = require('../models/user.js');
 var express = require('express');
 var router = express.Router();
+const flash = require('express-flash')
 const mongoose = require("mongoose");
+const session = require('express-session')
+const passport = require('passport')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('Placeholder');
-});
+const initializePassport = require('../passport-config')
+initializePassport(passport)
 
 
 router.post('/v1/register', async function(req, res, next) {
@@ -19,6 +25,7 @@ router.post('/v1/register', async function(req, res, next) {
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const date = Date.now().toString()
     const username = req.body.name
+
     console.log(`id: ${date}, name: ${username}, hashed: ${hashedPassword}`)
     const new_user = new userModel({id: date, name: username, hashed: hashedPassword})
     await new_user.save(function(err, doc){
@@ -32,6 +39,12 @@ router.post('/v1/register', async function(req, res, next) {
     res.redirect('/register')
   }
 });
+
+router.post('/v1/login', passport.authenticate('local', {
+  successRedirect:'/', 
+  failureRedirect:'/login', 
+  failureFlash: true
+  }))
 
 module.exports = router;
 /* */
