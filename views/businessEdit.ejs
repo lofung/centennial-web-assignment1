@@ -69,8 +69,8 @@
         let name = document.getElementById("name_box").value
         let number = document.getElementById("phone_box").value
         let email = document.getElementById("email_box").value
-        console.log({id, name, number, email})
-        alert("OK")
+        //console.log({id, name, number, email})
+        //alert("OK")
         await fetch(
 	    	`/editbusinesscontacts/${id}?name=${name}&number=${number}&email=${email}`,
     		{ method: 'POST' }
