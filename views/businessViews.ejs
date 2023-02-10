@@ -1,5 +1,4 @@
 <!--
-
   //LAU Kwan Kit
 //301256503
 //January 2023
@@ -33,7 +32,11 @@
       </table>
     </div>
   </main>
+
+
   <script>
+
+
     async function fetchAllContacts(){
         try {
             let res = await fetch('/allbusinesscontacts')
@@ -47,6 +50,11 @@
                     </td>
                     <td style="min-width:200px">
                         Email Address
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>`
             console.log(answer)
@@ -62,6 +70,12 @@
                     <td>
                         ${item.email}
                     </td>
+                    <td>
+                        <button><i class="bi bi-pencil-square"></i></button>
+                    </td>
+                    <td>
+                        <button onclick="onClickDelete('${item._id}')"><i class="bi bi-trash"></i></button>
+                    </td>
                 </tr>
                 `
                 htmlAttachment = htmlAttachment + htmlSegment
@@ -71,6 +85,14 @@
             console.log(err)
         }
 
+    }
+
+    async function onClickDelete(id){
+        await fetch(
+	    	`/deletebusinesscontacts/${id}`,
+    		{ method: 'DELETE' }
+        )
+        window.location.reload();
     }
 
     fetchAllContacts()

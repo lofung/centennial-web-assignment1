@@ -56,6 +56,24 @@ router.get('/allbusinesscontacts', checkAuthenticated, async function(req, res, 
   res.json(allContacts)
 });
 
+/* secured API for delete contacts */
+router.delete('/deletebusinesscontacts/:id', checkAuthenticated, async function(req, res, next) {
+  const _id = req.params.id
+  try {
+    await contactsModel.deleteOne({_id}, function(err, obj){
+      if (err) throw console.error(err)
+      console.log(_id + " object from mongo deleted.")
+      //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
+      res.redirect(303, '/business')
+    })
+  } catch (e){
+    console.error(e)
+  }
+
+
+});
+
+
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
