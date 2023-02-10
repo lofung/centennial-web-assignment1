@@ -36,7 +36,7 @@
         * - required fields
         </td> <td>
         <div style="float:right"></div>
-        <button id="submit">Submit Edit</button>
+        <button id="submit" onClick="submit">Submit Edit</button>
         <!-- button name="Check input" id="check" value="Check input" onClick="checkInput(e)">Check Inputs</button -->
 
         </td> </tr>
@@ -63,15 +63,23 @@
         }
     }
 
-    async function onClickDelete(id){
+    async function submit(e){
+        e.preventDefault();
+        let id = document.getElementById("_id_box").value
+        let name = document.getElementById("name_box").value
+        let number = document.getElementById("phone_box").value
+        let email = document.getElementById("email_box").value
+        console.log({id, name, number, email})
+        alert("OK")
         await fetch(
-	    	`/deletebusinesscontacts/${id}`,
-    		{ method: 'DELETE' }
+	    	`/editbusinesscontacts/${id}?name=${name}&number=${number}&email=${email}`,
+    		{ method: 'POST' }
         )
-        window.location.reload();
+        window.location.href="/business"
     }
 
     fetchContact(window.location.pathname.split("/").pop())
+    document.getElementById("submit").addEventListener ("click", submit);
   </script>
   
 <%- include partials/bottom_nav.ejs %>  

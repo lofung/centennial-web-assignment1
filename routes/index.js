@@ -86,6 +86,27 @@ router.delete('/deletebusinesscontacts/:id', checkAuthenticated, async function(
 
 });
 
+/* secured API for edit contacts */
+router.post('/editbusinesscontacts/:id', checkAuthenticated, async function(req, res, next) {
+  const _id = req.params.id
+  const name = req.query.name
+  const number = req.query.number
+  const email = req.query.email
+  try {
+    await contactsModel.findOneAndUpdate({_id}, {name, number, email}, function(err, obj){
+      if (err) throw console.error(err)
+      console.log({_id, name, number, email} + " object from mongo updated.")
+      //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
+      
+      res.redirect(303, '/business')
+    })
+  } catch (e){
+    console.error(e)
+  }
+
+
+});
+
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
