@@ -39,6 +39,10 @@ router.get('/business', checkAuthenticated, function(req, res, next) {
   res.render('businessViews', { title: 'Business Contacts'});
 });
 
+router.get('/businessedit/:id', checkAuthenticated, function(req, res, next) {
+  res.render('businessEdit', { title: 'Business Contacts Edit', _id: req.params.id});
+});
+
 /* GET Services page. */
 router.get('/services', function(req, res, next) {
   res.render('services', { title: 'Services'});
@@ -47,6 +51,14 @@ router.get('/services', function(req, res, next) {
 /* GET Contact Us page. */
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact'});
+});
+
+/* secured API for all contacts */
+router.get('/businesscontactsid/:id', checkAuthenticated, async function(req, res, next) {
+  const _id = req.params.id
+  const tempAllContacts = await contactsModel.find({_id})
+  const allContacts = JSON.parse(JSON.stringify(tempAllContacts))
+  res.json(allContacts)
 });
 
 /* secured API for all contacts */
