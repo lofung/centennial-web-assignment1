@@ -51,7 +51,7 @@ router.get('/contact', function(req, res, next) {
 
 /* secured API for all contacts */
 router.get('/allbusinesscontacts', checkAuthenticated, async function(req, res, next) {
-  const tempAllContacts = await contactsModel.find({})
+  const tempAllContacts = await contactsModel.find({}).sort({name: 'asc'})
   const allContacts = JSON.parse(JSON.stringify(tempAllContacts))
   res.json(allContacts)
 });
@@ -64,6 +64,7 @@ router.delete('/deletebusinesscontacts/:id', checkAuthenticated, async function(
       if (err) throw console.error(err)
       console.log(_id + " object from mongo deleted.")
       //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
+      
       res.redirect(303, '/business')
     })
   } catch (e){
