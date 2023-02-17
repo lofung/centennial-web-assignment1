@@ -94,13 +94,11 @@ router.post('/editbusinesscontacts/:id', checkAuthenticated, async function(req,
   const email = req.query.email
   if (_id == 0){
     try {
-      await contactsModel.insertOne({_id: ObjectId.GenerateNewId(new DateTime())}, {name, number, email}, function(err, obj){
-        if (err) throw console.error(err)
-        console.log({_id, name, number, email} + " object from mongo updated.")
-        //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
+      const contact = new contactsModel({name, number, email})
+      const result = await contact.save()
+      console.log(result.id)
         
-        res.redirect(303, '/business')
-      })
+      res.redirect(303, '/business')
     } catch (e){
       console.error(e)
     }  
