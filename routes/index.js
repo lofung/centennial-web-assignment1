@@ -92,19 +92,31 @@ router.post('/editbusinesscontacts/:id', checkAuthenticated, async function(req,
   const name = req.query.name
   const number = req.query.number
   const email = req.query.email
-  try {
-    await contactsModel.findOneAndUpdate({_id}, {name, number, email}, function(err, obj){
-      if (err) throw console.error(err)
-      console.log({_id, name, number, email} + " object from mongo updated.")
-      //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
-      
-      res.redirect(303, '/business')
-    })
-  } catch (e){
-    console.error(e)
+  if (_id == 0){
+    try {
+      await contactsModel.insertOne({_id: ObjectId.GenerateNewId(new DateTime())}, {name, number, email}, function(err, obj){
+        if (err) throw console.error(err)
+        console.log({_id, name, number, email} + " object from mongo updated.")
+        //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
+        
+        res.redirect(303, '/business')
+      })
+    } catch (e){
+      console.error(e)
+    }  
+  } else {
+    try {
+      await contactsModel.findOneAndUpdate({_id}, {name, number, email}, function(err, obj){
+        if (err) throw console.error(err)
+        console.log({_id, name, number, email} + " object from mongo updated.")
+        //Set HTTP method to GET, oTHERWISE WOULD AIM AT DELETE
+        
+        res.redirect(303, '/business')
+      })
+    } catch (e){
+      console.error(e)
+    }  
   }
-
-
 });
 
 
