@@ -31,9 +31,6 @@
         </tr>
       </table>
     </main>
-    <div>
-        <a href="/businessedit/0" style="text-decoration: none"><button><i class="bi bi-pencil-square"></i>Add New</button></a>
-    </div>
 
   <script>
 
@@ -81,6 +78,11 @@
                 `
                 htmlAttachment = htmlAttachment + htmlSegment
             })
+
+            let htmlSegment2 = `<tr></tr><tr>                    
+                        <td><a href="/businessedit/0" style="text-decoration: none"><button><i class="bi bi-pencil-square"></i>Add New</button></a></td>
+                        </tr>`
+
             document.getElementById("contactTable").innerHTML = htmlAttachment
         } catch (err) {
             console.log(err)
